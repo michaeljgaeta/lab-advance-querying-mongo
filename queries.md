@@ -4,67 +4,107 @@
 
 ### 1. All the companies whose name match 'Babelgum'. Retrieve only their `name` field.
 
-Filter: { "name": "Babelgum" }
-Project: { "name": 1 }, "skip": 2 }
+query: { "name": "Babelgum" }
+project: { "name": 1 }, "skip": 2 }
+sort:
+skip:
+limit:
 
 ### 2. All the companies that have more than 5000 employees. Limit the search to 20 companies and sort them by **number of employees**.
 
-Filter: {"number_of_employees": { "\$gt": 5000 } }
-Sort: {"number_of_employees": 1 }
-Limit: 20
+query: {"number_of_employees": { "$gt": 5000 } }
+project:
+sort: {"number_of_employees": 1 }
+skip:
+limit: 20
 
 ### 3. All the companies founded between 2000 and 2005, both years included. Retrieve only the `name` and `founded_year` fields.
 
-Filter: {"founded_year": {"$gte": 2000, "$lte": 2005 } }
-Project: { name: 1, founded_year: 1, \_id: 0 }
+query: {"founded_year": {"$gte": 2000, "$lte": 2005 } }
+project: { name: 1, founded_year: 1, _id: 0 }
+sort:
+skip:
+limit:
 
 ### 4. All the companies that had a Valuation Amount of more than 100.000.000 and have been founded before 2010. Retrieve only the `name` and `ipo` fields.
 
-Filter: { "total_money_raised": { "$gt": "100k" }, "founded_year": { "$lt": 2010 } }
-Project: { name: 1, total_money_raised: 1, \_id: 0 }
+query: { "total_money_raised": { "$gt": "100k" }, "founded_year": { "$lt": 2010 } }
+project: { name: 1, total_money_raised: 1, _id: 0 }
+sort:
+skip:
+limit:
 
 ### 5. All the companies that have less than 1000 employees and have been founded before 2005. Order them by the number of employees and limit the search to 10 companies.
 
-Filter: { "number_of_employees": { "$lt": 1000 }, "founded_year": { $lt: 2005 } }
-Sort: { "number_of_employees": 1 }
-Limit: 10
+query: { "number_of_employees": { "$lt": 1000 }, "founded_year": { $lt: 2005 } }
+project: { "number_of_employees": 1 }
+sort:
+skip:
+limit: 10
 
 ### 6. All the companies that don't include the `partners` field.
 
-Filter: { "partners": { "\$exists": false } }
+query: { "partners": { "$exists": false } }
+project:
+sort:
+skip:
+limit:
 
 ### 7. All the companies that have a null type of value on the `category_code` field.
 
-Filter: { "category_code": null }
+query: { "category_code": null }
+project:
+sort:
+skip:
+limit:
 
 ### 8. All the companies that have at least 100 employees but less than 1000. Retrieve only the `name` and `number of employees` fields.
 
-Filter: {"number_of_employees": {"$gte":100, "$lt": 1000}}
-Project: {"number_of_employees": 1, "name": 1}
+query: {"number_of_employees": {"$gte":100, "$lt": 1000}}
+project: {"number_of_employees": 1, "name": 1}
+sort:
+skip:
+limit:
 
 ### 9. Order all the companies by their IPO price in a descending order.
 
-Sort: { total_money_raised: -1 }
+query:
+project: 
+sort: { total_money_raised: -1 }
+skip:
+limit:
 
 ### 10. Retrieve the 10 companies with more employees, order by the `number of employees`
 
-Filter: { "number_of_employees": { "\$gte": 100 } }
-Sort: { "number_of_employees": 1 }
-Limit: 10
+query: { "number_of_employees": { "$gte": 100 } }
+project: 
+sort: { "number_of_employees": 1 }
+skip:
+limit: 10
 
 ### 11. All the companies founded on the second semester of the year. Limit your search to 1000 companies.
 
-Filter: { "founded_month": {"\$gte": 7} }
-Limit: 1000
+query: { "founded_month": {"$gte": 7} }
+project: 
+sort:
+skip:
+limit: 1000
 
 ### 12. All the companies founded before 2000 that have an acquisition amount of more than 10.000.000
 
-Filter: {"founded_year": {"$lt": 2000}, "acquisition": { "price_amount": { "$gt": 10000000 } } }
-// Trouble with this one
+query: {"founded_year": {"$lt": 2000}, "acquisition.price_amount": { "$gt": 10000000 } }
+project: 
+sort:
+skip:
+limit:
 
 ### 13. All the companies that have been acquired after 2010, order by the acquisition amount, and retrieve only their `name` and `acquisition` field.
 
-<!-- Your Code Goes Here -->
+query: {"founded_year": {"$lt": 2000}, "acquisition.price_amount": { "$gt": 10000000 } }
+project: 
+sort:
+skip:
+limit:
 
 ### 14. Order the companies by their `founded year`, retrieving only their `name` and `founded year`.
 
